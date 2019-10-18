@@ -1,0 +1,61 @@
+server:
+  port: 18080
+
+spring:
+  aop:
+    auto: true
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/db_qitian?characterEncoding=utf8&useSSL=false&&serverTimezone=GMT #数据库连接地址
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #   数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,slf4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true #自己写的时候开不开驼峰配置
+    cache-enabled: false
+  global-config:
+    db-config:
+      id-type: auto
+      field-strategy: not_empty
+      #mybatis-plus中BaseMapper映射的时候默认是下划线命名 但数据库若是驼峰就有问题了 还是把这个映射关闭了 根据model属性映射
+      column-underline: true
+      #逻辑删除配置
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      db-type: mysql
+    refresh: false
+
+
+logging:
+  level:
+    root: info
+
+
+
+ip: 10.10.2.179
+port: 12345
+
+
+DruidUsername: gcrobot
+DruidPassword: 123456
+#ip白名单
+DruidAllow:

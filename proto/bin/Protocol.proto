@@ -1,0 +1,32 @@
+syntax = "proto2";
+
+package protobuf;
+
+option java_package="com.zhc.tcp.protocol";
+
+option java_outer_classname="ProtobufProtocol";
+
+
+// 用户的注册
+message UserRegisterREQ{
+    required string username=1;
+    required string password=2;
+}
+message UserRegisterRSP{
+    required int32 error=1;
+}
+
+//用户的登录
+message UserLoginREQ{
+    required string username=1;
+    required string password=2;
+}
+message UserLoginRSP{
+    required int32 error=1;
+    optional int64 token=2;
+}
+
+
+
+
+
